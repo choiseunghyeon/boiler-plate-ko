@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const { User } = require("./models/User");
 const bodyParser = require("body-parser");
 const config = require("./config/key");
-const jwt = require("jsonwebtoken");
+// const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const { auth } = require("./middleware/auth");
 
@@ -71,6 +71,10 @@ app.post("/api/users/login", (req, res) => {
   //맞다면 토근 생성
 });
 
+app.get("/api/test", (req, res) => {
+  res.json("you are in");
+});
+
 app.get("/api/users/auth", auth, (req, res) => {
   res.status(200).json({
     _id: req.user._id,
@@ -92,6 +96,7 @@ app.get("/api/users/logout", auth, (req, res) => {
     });
   });
 });
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
